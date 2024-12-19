@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Football Boots Carousel</title>
+  <style>
+    /* Carousel container */
+    .carousel {
+      position: relative;
+      width: 50%;
+      max-width: 600px;
+      aspect-ratio: 16 / 9;
+      margin: 20px auto;
+      overflow: hidden;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Images wrapper */
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Individual image styling */
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Navigation buttons */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .carousel-nav button {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 16px;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .carousel-nav button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Media query: tablets and smaller devices */
+    @media (max-width: 768px) {
+      .carousel-images img {
+        max-height: 300px;
+      }
+
+      .carousel-nav button {
+        font-size: 16px;
+        padding: 8px 16px;
+      }
+    }
+
+    /* Media query: mobile devices */
+    @media (max-width: 480px) {
+      .carousel-images img {
+        max-height: 250px;
+      }
+
+      .carousel-nav button {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+  <link rel="stylesheet" href="collection.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>Swift</h1>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="home.html #about">About</a></li>
+        <li><a href="home.html #contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+<div class="carousel">
+  <div class="carousel-images">
+    <img src="boots.1.jpg" alt="Football Boot 1">
+    <img src="boots.2.jpg" alt="Football Boot 2">
+    <img src="boots.3.jpg" alt="Football Boot 3">
+    <img src="boots.4.jpg" alt="Football Boot 4">
+  </div>
+  <div class="carousel-nav">
+    <button id="prev">❮</button>
+    <button id="next">❯</button>
+  </div>
+</div>
+
+<script>
+  const carouselImages = document.querySelector('.carousel-images');
+  const images = document.querySelectorAll('.carousel-images img');
+  const totalImages = images.length;
+
+  let index = 0;
+  const intervalTime = 3000;
+
+  // Function to move carousel
+  function updateCarousel() {
+    carouselImages.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // Automatic sliding
+  let carouselInterval = setInterval(() => {
+    index = (index + 1) % totalImages; // Loop to the beginning after last image
+    updateCarousel();
+  }, intervalTime);
+
+  // Previous button
+  document.getElementById('prev').addEventListener('click', () => {
+    index = (index - 1 + totalImages) % totalImages; // Loop to the end if going backward from first image
+    updateCarousel();
+    resetInterval();
+  });
+
+  // Next button
+  document.getElementById('next').addEventListener('click', () => {
+    index = (index + 1) % totalImages;
+    updateCarousel();
+    resetInterval();
+  });
+
+  // Reset interval to avoid interruption
+  function resetInterval() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(() => {
+      index = (index + 1) % totalImages;
+      updateCarousel();
+    }, intervalTime);
+  }
+</script>
+
+  <!-- Collection Page Main Content -->
+  <main class="collection-page">
+    <h2 style="color: white;">Football Boot Collection</h2>
+    <p style="color: white;">Discover our wide range of football boots designed for every level of play and every field type.</p>
+
+    <!-- Product Collection Grid -->
+    <div class="products">
+      <div class="product">
+        <img src="https://th.bing.com/th/id/OIF.p7I3OpMyUcWNckIxxlPn2g?w=247&h=183&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Football boot PowerStrike">
+        <h3>PowerStrike</h3>
+        <p>€120</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="product">
+        <img src="https://th.bing.com/th?id=OIF.%2bkfxoXlxhEoo4%2bTN1GxzEA&w=211&h=211&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Football boot SpeedFlex">
+        <h3>SpeedFlex</h3>
+        <p>€130</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="product">
+        <img src="https://th.bing.com/th?id=OIF.HUWQtl5WlKUu%2bSZoXlZYwg&w=211&h=211&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Football boot GripMaster">
+        <h3>GripMaster</h3>
+        <p>€110</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="product">
+        <img src="https://th.bing.com/th?id=OIF.PVkDw%2fQqK45EDE62oyT7Sg&w=211&h=211&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Football boot PrecisionBoost">
+        <h3>PrecisionBoost</h3>
+        <p>€140</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+      <div class="product">
+        <img src="https://th.bing.com/th?id=OIF.EcTEXznwg24rCb%2bOfUeORA&w=161&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Football boot AeroPro">
+        <h3>AeroPro</h3>
+        <p>€125</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Boot Central. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
